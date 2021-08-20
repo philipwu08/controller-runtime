@@ -150,7 +150,7 @@ func (c *Controller) Start(ctx context.Context) error {
 	// but lock outside to get proper handling of the queue shutdown
 	c.mu.Lock()
 	if c.Started {
-		return errors.New("controller was started more than once. This is likely to be caused by being added to a manager multiple times")
+		return fmt.Errorf("controller:%v was started more than once. This is likely to be caused by being added to a manager multiple times", Name)
 	}
 
 	c.initMetrics()
